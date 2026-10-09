@@ -20,7 +20,7 @@ This repository is a cleaned release snapshot of the source and the matching app
 - Flash offset: `0x10000` (application slot only)
 - SHA-256: `77d4c02c39075a188dbf7dc476b4a7806bb46c59a58da90e3fff5ca5237714d2`
 
-The 9 October image contains MeshGame's Berlin candidate catalogue, quest help/labels and the shared microphone/Deepgram source. The microphone had previously produced a user-confirmed clean Notes transcription, but was not re-tested against Deepgram after this particular flash. See the audio notes for the exact evidence and limits.
+The 9 October image contains MeshGame's Berlin candidate catalogue, quest help/labels and the shared microphone/Deepgram source. The user confirms transcription works across the integrated Notes, Ollama Agent and Terminal text-entry apps. This is user-reported device behavior; Codex did not independently retest each app after this particular flash. See the audio notes for the exact evidence and limits.
 
 ## Build
 

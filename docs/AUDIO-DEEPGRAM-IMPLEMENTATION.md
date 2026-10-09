@@ -55,7 +55,7 @@ Useful source pointers:
 
 The latest documented app image is `firmware-t-deck-tft-2.8.0.bin`, PlatformIO target `t-deck-tft`, flashed app-only at `0x10000` on 9 October 2026. SHA-256: `77d4c02c39075a188dbf7dc476b4a7806bb46c59a58da90e3fff5ca5237714d2`. See `firmware/build/2026-10-09-meshgame-help-labels-refined/README.md` in the project for the flash record. The image contains the microphone code from the active source snapshot.
 
-The user previously reported a successful, clean transcription in Notes and microphone-level responses in the mic diagnostic. They also observed inconsistent repeated test behavior during development; the I²S/codec lifecycle above was adjusted in response. A successful Deepgram request was **not re-run after the 9 October 2026 app flash**. Do not claim that the last flashed image has been freshly voice-tested unless that test is performed. The user-facing test report and the source/build/flash evidence should remain distinct.
+The user confirms that transcription works generally in every integrated text-entry app: Notes, the Ollama Agent and Terminal. They previously described a clean Notes transcription. Treat cross-app functionality as user-confirmed behavior on the current device. Keep the evidence source explicit: this is the user's device confirmation, not an independent test performed by Codex after the 9 October 2026 flash. The source/build/flash evidence and user-reported end-to-end behavior are separate.
 
 ## Troubleshooting history and the actual success point
 
@@ -67,9 +67,9 @@ This sequence is reconstructed from the user's reports in the project conversati
 4. **Repeat-capture failure and code response.** The user reported that level tests and transcription could work once and then fail. The source now probes/configures the ES7210 once and keeps it initialized across takes, while stopping and uninstalling the I²S1 RX driver after a capture. The source comments state repeated codec STOP/reset cycles had caused silent later captures on this device. This lifecycle change is the code-level mitigation. Do not claim an independently measured root cause for the SD-removal symptom, or claim that the mitigation prevents every failure.
 5. **Usable capture duration.** The user asked for longer speech because the earlier short takes felt rushed. A visible remaining-time countdown and PSRAM-sized buffer were implemented, with a maximum of 30 seconds and a possibly shorter limit when memory is fragmented/low. The current source confirms this limit; it is not unlimited recording.
 6. **Transient ES7210 setup message.** The user later reported seeing `ES7210 microphone setup failed` once, then said it worked on a subsequent attempt. That report does not establish why the one-off setup failed. Preserve this as a known intermittent observation instead of writing that it was fully resolved.
-7. **Latest flash boundary.** The 9 October image includes the current voice source, but there is no record of a new Deepgram transcription being made after that flash. Earlier clean transcription is real user-reported evidence; the newest image's end-to-end STT status remains unverified.
+7. **Cross-app confirmation.** The user confirms that voice transcription works in every integrated text-input app, including Notes, Ollama Agent and Terminal. Record this as current user-confirmed behavior. Codex did not independently exercise each app after the latest flash.
 
-For future acceptance notes, record separately: (a) codec detected/setup success, (b) MIC1/MIC2 level responds while speaking, (c) a WAV is captured, (d) one transcription returns, (e) a second consecutive transcription returns without reboot, and (f) the returned text is inserted in each enabled app. A speaker beep alone only verifies playback.
+For future acceptance notes, record separately: (a) codec detected/setup success, (b) MIC1/MIC2 level responds while speaking, (c) a WAV is captured, (d) one transcription returns, (e) a second consecutive transcription returns without reboot, and (f) the returned text is inserted in each enabled app. Current cross-app text insertion is user-confirmed. A speaker beep alone only verifies playback.
 
 ## Website-ready facts and careful claims
 
@@ -77,7 +77,7 @@ Safe concise description: “The T-Deck records mono 16 kHz/16-bit WAV through i
 
 Explain the engineering challenge accurately: the speaker ping only confirmed speaker output, not microphone input. The useful debugging split was codec detection/configuration, left/right I²S input and levels, repeat-capture lifecycle, memory capacity, WAV formatting, network/auth and transcript insertion. The T-Deck's speaker uses I²S0 while this microphone path uses I²S1.
 
-Avoid unverified claims such as “first T-Deck with speech recognition,” “unlimited recording,” “offline transcription,” “streaming transcription,” or “latest firmware re-tested successfully.” Say a clean on-device transcription was observed earlier, and date the exact test if known. Do not publish the API key or private config contents.
+Avoid unverified claims such as “first T-Deck with speech recognition,” “unlimited recording,” “offline transcription,” or “streaming transcription.” It is accurate to say the user confirms transcription works in Notes, Ollama Agent and Terminal. Do not imply Codex independently retested after the latest flash. Do not publish the API key or private config contents.
 
 ## Official references
 

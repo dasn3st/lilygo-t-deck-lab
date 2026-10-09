@@ -120,7 +120,7 @@ Der Knackpunkt war die Zuordnung: **Deepgram transkribiert voraufgezeichnetes Au
 | Datenausgabe | temporärer HTTP-QR-Download für aktuelle Notiz oder Karten-GeoJSON |
 | Quell-/Build-ID | aktiver Quellordner `source-current-2026-10-06`; App-Image `firmware-t-deck-tft-2.8.0.bin`, geflasht am 9. Oktober 2026 |
 | Letzter Flash | 9. Oktober 2026, app-only bei `0x10000`; SHA-256 `77d4c02c39075a188dbf7dc476b4a7806bb46c59a58da90e3fff5ca5237714d2` |
-| Spracheingabeprüfung | Nutzer bestätigte zuvor eine saubere Transkription in Notes; nach dem 9.-Oktober-Flash nicht erneut gegen Deepgram getestet |
+| Spracheingabeprüfung | Nutzer bestätigt Transkription in Notes, Ollama-Agent und Terminal; Codex hat diese Apps nach dem 9.-Oktober-Flash nicht unabhängig einzeln getestet |
 
 ## Nicht für öffentliche Seiten übernehmen
 
@@ -128,7 +128,7 @@ Der Knackpunkt war die Zuordnung: **Deepgram transkribiert voraufgezeichnetes Au
 - Rohes komplettes Flash-Image oder NVS-Backups. Sie können Geräteeinstellungen und Zugangsdaten enthalten.
 - Private Karten-/Notizdaten, genaue Aufenthaltsorte, WLAN-QR-Codes oder noch gültige Download-Tokens.
 - Aussagen wie „vollständig offline“, „beliebig lange Aufnahme“, „alle Karten exportiert“ oder „jeder Gerätepfad geprüft“: Sie treffen auf den dokumentierten Stand nicht zu.
-- Nicht behaupten, die Mic-Funktion sei nach dem letzten Flash erneut Ende zu Ende geprüft worden; frühere erfolgreiche Nutzerprüfung und letzter Flash sind getrennte Nachweise.
+- Nicht als Codex-eigene Abnahme darstellen: Der aktuelle Cross-App-Status ist vom Nutzer bestätigt, nicht von Codex nach dem letzten Flash unabhängig einzeln geprüft.
 
 ## Referenzen
 
