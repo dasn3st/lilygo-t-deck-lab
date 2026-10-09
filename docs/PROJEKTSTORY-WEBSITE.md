@@ -85,7 +85,7 @@ flowchart TD
 - Nach **Fertig** war der alte temporäre Link nicht mehr erreichbar.
 - Der Rabenmarker war in der laufenden Kartenansicht sichtbar.
 - Der Feder-Marker ist in den geflashten Bilddaten enthalten, wartet aber noch auf den sichtbaren Test mit einem tatsächlich angelegten eigenen Pin.
-- Die Spracheingabe hatte der Nutzer zuvor in Notes mit einer erfolgreichen Transkription geprüft. Sie wurde nach dem QR-Flash nicht erneut gegen Deepgram aufgerufen.
+- Beim damaligen QR-Flash-Test am 6.10. wurde Spracheingabe nicht erneut aufgerufen. Inzwischen bestätigt der Nutzer, dass Transkription in Notes, Ollama-Agent und Terminal grundsätzlich funktioniert; siehe den aktuellen Faktenkasten. Das ist Nutzerbestätigung, keine unabhängige Codex-Messung.
 
 Damit sind die QR-Downloads auf echter Hardware belegt. Der Kartenexport ist bis zum Erstellen des ersten eigenen Pins strukturell, aber noch nicht mit einem nicht-leeren GeoJSON geprüft.
 
