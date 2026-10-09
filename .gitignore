@@ -1,0 +1,14 @@
+# Firmware build products and machine-specific state
+firmware/source/.pio/
+firmware/source/userPrefs.jsonc
+firmware/source/.env
+firmware/source/.env.*
+*.log
+.DS_Store
+
+# Never publish these if they are copied here later
+**/deepgram.txt
+**/ollama.txt
+**/ssh.txt
+**/*nvs*.bin
+**/*backup*

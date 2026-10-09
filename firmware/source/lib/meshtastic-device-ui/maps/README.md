@@ -1,0 +1,92 @@
+# Map Tile Starter-Kit
+
+This folder contains a basic set of map tiles in different styles for Meshtastic UI enabled devices with SD card support. **Each zip file includes zoom levels 1 - 6 of Earth's surface**, so whereever you are you'll be able to zoom out and see in what country's location you've been beamed to.
+
+Refer to [Credits and Attribution](#Credits-and-Attribution) for the origin of the provided map tiles.
+
+For size reductions each single tile has been converted to 8-bit palette using the following imagemagick command:
+
+```bash
+find maps -name "*.png" -exec mogrify -colors 256 -depth 8  +dither -define png:color-type=3 -alpha Background {} \;
+```
+
+## Installing
+
+Prepare a SDCard and format it with the SD formatting tool provided by [www.sdcard.org](https://www.sdcard.org/downloads/). Format the SD card as MBR (sometimes also called "msdos") partition table. Meshtastic UI supports both FAT32 and exFAT partitions, with exFAT being the recommended format.
+
+Unzip the contents of the zip file(s) into the SD card's root folder retaining the subfolder structure `/maps/<style>/z/x/y`.
+
+Insert the SD card into the MUI device. On MUI's home screen you can check if the card is detected properly: scroll down to the SD card icon, press the button and you'll find information about the total size, file system format, and used space of the SD card. If there is no SD card icon, the SD card is not available.
+<br>Note: whenever you remove or insert the SD card you should press the button afterwards to get a consistent state.
+
+Pressing on the Map button in the main button bar will open the map panel and show the surrounding area of where you are positioned according your GPS, or near other nodes with position, or at your saved home position, or at a default location. In case you see only empty tiles which may be the case when you have not yet downloaded detailed map tiles for your location, zoom out to at least level 6 which will then load the tiles on your SD card.
+
+Long pressing the Map button allows to choose between the map styles found on SD card and reveals sliders to control brightness and contrast of the tiles. Another tap on the Map button toggles the controls.
+
+## Downloading Tiles
+
+The map tiles are in .png format of size 256x256 pixel and zoom levels 1 - 20, where 1 represents the entire earth and 20 a mid-sized building.
+
+A web tool for convenient downloading of further map tiles, run by community member @zmiguel, can be found here: [Oxed's Map Tile Downloader](https://download.tiles.coalition.space/). 
+It provides automated downloading of MUI-compatible map tiles in 8-bit format. It uses its own tile server with data from OpenStreetMap. Tiles are updated every week and cached for 1 week.
+
+This service is not affiliated with Meshtastic, and the tile server is not guaranteed to have 99% uptime. Pre-generated bundles for the most popular regions are also available for download on this tool indefinitely.
+
+Please read the instructions carefully and don't abuse the freely provided services.
+
+Note: when choosing a region for downloading tiles you're advised to adapt the zoom level from the outer part (e.g. level 6 - 8) to the center of the area of interest (e.g. level 15 or 16). This way you can save a lot of time, space and credits.
+
+<img src="../docs/tile_pyramid.png" alt="Tile Zoom Levels">
+
+If you like to check of how many tiles an area is composed of you can make use of this [Tile Calculator](https://tools.geofabrik.de/calc) provided by Geofabrik.
+<br>
+
+## WiFi Download
+
+If WiFi is enabled and an internet connection is present then map tiles that are not found on SD card are downloaded via the internet. The default map
+provider is Google Maps. However, you can provide your own map style URL by putting an .url file into the style folder. This file must contain a single line with the url template to download from. Once an .url file is found all successfully downloaded map tiles are also stored in the style same folder of the SD card.
+
+# Extra maps
+
+A small group of map tile enthusiasts (special thanks to @joyel24, @teddy1602 & @zmiguel) like to share their downloaded tiles. In this section you'll find torrents or direct links for downloading complete sets of map tiles of various zoom levels.
+
+## France
+
+Entire France Atlas style zoom 6 to 13: [Torrent Magnet Link](https://tinyurl.com/43n7uwv3) ~1.29GB md5: 1e21c497e124647dda528d71011e133c
+<br>Entire France Outdoors style zoom 1 to 13: [Torrent Magnet Link](https://tinyurl.com/3xhpn7j7) ~3.9GB md5: c02b89e9d5d2c7d5b3d902e6429dd5c4
+
+## Netherlands
+
+Entire Netherlands Standard style zoom 1 to 14 including Amsterdam until zoom 17: [Torrent Magnet Link](https://tinyurl.com/4vpuhd7n) ~956MB md5: 30ccf6484c99ae0b0765cff19acfc67e
+
+## United States of America
+
+Entire USA (all fifty states) standard OSM-style zoom 1 to 12, downloaded from OSM on 3/3/2026: [Torrent Magnet Link](https://tinyurl.com/339tcx45) ~1.4GB md5: 3e2b9c010949d35710be8bf62f838ecb5e07cff2
+
+## Oxed's Map tiles
+
+Multiple bundles available (World 0-9, EU 0-13, US 0-13, EU countries 0-15, US states 0-15) along with a self-checkout tool to download 8-bit optimized tiles for your selected area
+
+Bundles can be found [here](https://download.tiles.coalition.space/bundles) and the self-checkout map can be found [here](https://download.tiles.coalition.space)
+
+<br>Refer to [Credits and Attribution](#Credits-and-Attribution) for the origin of the provided map tiles.
+
+### md5sum calculation
+
+`dir=<root_torrent_dir> ; find "$dir" -type f -exec md5sum {} \; | sed "s~$dir~~g" | LC_ALL=C sort -d | md5sum`
+
+<br>
+
+# Compatibility
+
+- 🟢 **LILYGO T-Deck**: Confirmed to work
+- 🟢 **CrowPanel Advance HMI**: Confirmed to work on 2.4", 2.8", and 3.5" models
+- 🟡 **Seeed SenseCAP Indicator**: The MicroSD card slot is physically not connected with the ESP32-S3 where the MUI is running. It can not be used for showing maps in Meshtastic UI. However, when WiFi is enabled then map tiles are downloaded via the internet.
+- 🟡 **Heltec V4 Kit**: The current version does not have a MicroSD card slot and the available PSRAM is only 2 MB. When WiFi is enabled then map tiles are downloaded via the internet and converted into grayscale tiles to lower the memory consumption.
+
+# Credits and Attribution
+
+Attribution to Thunderforest, Geoapify, and OpenStreetMap for providing the tile API services:
+_<br>atlas, outdoors styles © https://www.thunderforest.com/terms - Creative Commons licence CC-BY-SA 2.0_
+_<br>positron, dark-matter-brown styles © https://www.geoapify.com/terms-and-conditions/ - Open Data Common Open Database License, "ODbL" 1.0_
+_<br>osm, standard style © https://www.osm.org/copyright - Open Data Commons Open Database License, "ODbL" 1.0_
